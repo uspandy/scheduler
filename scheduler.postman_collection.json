@@ -1,0 +1,1793 @@
+{
+	"info": {
+		"_postman_id": "4a665c07-1ecd-4bd3-aca7-183c9f9681a2",
+		"name": "Scheduler",
+		"description": "Scheduler test task API description",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "Simple sign up",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Unique request identifier",
+										"key": "X-Request-Id",
+										"value": "m"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"admin@email.com\",\n    \"password\": \"adminPassword\",\n    \"departmentIds\": []\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/auth/signup",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "User is created (status)",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\",\n    \"departmentIds\": [\n        \"<string>\",\n        \"<string>\"\n    ]\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/admin/auth/signup",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"auth",
+												"signup"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"isSuccess\": \"<boolean>\",\n \"error\": {\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n }\n}"
+								}
+							]
+						},
+						{
+							"name": "Simple logon",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Unique request identifier",
+										"key": "X-Request-Id",
+										"value": "m"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"admin@email.com\",\n    \"password\": \"adminPassword\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/auth/logon",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"auth",
+										"logon"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Token pair",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/admin/auth/logon",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"auth",
+												"logon"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"accessToken\": \"<string>\",\n \"refreshToken\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Refresh token",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Unique request identifier",
+										"key": "X-Request-Id",
+										"value": "m"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"refreshToken\": \"{{adminRefreshToken}}\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/auth/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"auth",
+										"refresh"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Token pair",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"refreshToken\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/admin/auth/refresh",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"auth",
+												"refresh"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"accessToken\": \"<string>\",\n \"refreshToken\": \"<string>\"\n}"
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const response = JSON.parse(responseBody)",
+									"response.accessToken && pm.environment.set(\"adminAccessToken\", response.accessToken);",
+									"response.refreshToken && pm.environment.set(\"adminRefreshToken\", response.refreshToken);",
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "schedules",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Delete schedule",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "m"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/schedules/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"schedules",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{scheduleId}}",
+													"description": "(Required) Schedule id"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Schedule is deleted (status)",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"description": "Unique request identifier",
+														"key": "X-Request-Id",
+														"value": "<string>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/schedules/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"schedules",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"isSuccess\": \"<boolean>\",\n \"error\": {\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n }\n}"
+										}
+									]
+								},
+								{
+									"name": "Update schedule",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"pm.environment.set(\"randomDuration\", _.random(1, 24))",
+													"pm.environment.set(\"randomDate\", _.random(1, 31).toString().padStart(2, '0'))",
+													"pm.environment.set(\"randomMonth\", _.random(1, 12).toString().padStart(2, '0'))"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "m"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"durationInHours\": {{randomDuration}},\n    \"startDate\": \"2023-{{randomMonth}}-{{randomDate}}\",\n    \"userId\": \"{{userId}}\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/admin/schedules/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"schedules",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{scheduleId}}",
+													"description": "(Required) Schedule id"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Schedule entity",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [
+													{
+														"description": "Unique request identifier",
+														"key": "X-Request-Id",
+														"value": "<string>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"durationInHours\": \"<number>\",\n    \"startDate\": \"<string>\",\n    \"userId\": \"<string>\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/admin/schedules/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"schedules",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"<string>\",\n \"durationInHours\": \"<number>\",\n \"startDate\": \"<string>\",\n \"userId\": \"<string>\",\n \"createdAt\": \"<string>\",\n \"updatedAt\": \"<string>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Create schedule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const response = JSON.parse(responseBody)",
+											"response.id && pm.environment.set(\"scheduleId\", response.id);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"randomDuration\", _.random(1, 24))",
+											"pm.environment.set(\"randomDate\", _.random(1, 31).toString().padStart(2, '0'))",
+											"pm.environment.set(\"randomMonth\", _.random(1, 12).toString().padStart(2, '0'))"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Unique request identifier",
+										"key": "X-Request-Id",
+										"value": "m"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"durationInHours\": {{randomDuration}},\n    \"startDate\": \"2023-{{randomMonth}}-{{randomDate}}\",\n    \"userId\": \"{{userId}}\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/admin/schedules",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"schedules"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Schedule entity",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"durationInHours\": \"<number>\",\n    \"startDate\": \"<string>\",\n    \"userId\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/admin/schedules",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"schedules"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": \"<string>\",\n \"durationInHours\": \"<number>\",\n \"startDate\": \"<string>\",\n \"userId\": \"<string>\",\n \"createdAt\": \"<string>\",\n \"updatedAt\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Get schedules list (without department restrictions)",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Unique request identifier",
+										"key": "X-Request-Id",
+										"value": "m"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/schedules?perPage=50&page=1&from=2022-12-01&to=2023-10-21&userId={{userId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"schedules"
+									],
+									"query": [
+										{
+											"key": "perPage",
+											"value": "50",
+											"description": "(Required) Items per page"
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"description": "(Required) Current page"
+										},
+										{
+											"key": "from",
+											"value": "2022-12-01",
+											"description": "(Required) Query search by start date (from) (ISO string)"
+										},
+										{
+											"key": "to",
+											"value": "2023-10-21",
+											"description": "(Required) Query search by start date (to) (ISO string)"
+										},
+										{
+											"key": "userId",
+											"value": "{{userId}}",
+											"description": "(Required) User id"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Schedules list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "<string>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/schedules?perPage=10&page=1&from=<string>&to=<string>&userId=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"schedules"
+											],
+											"query": [
+												{
+													"key": "perPage",
+													"value": "10"
+												},
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "from",
+													"value": "<string>"
+												},
+												{
+													"key": "to",
+													"value": "<string>"
+												},
+												{
+													"key": "userId",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"totalItems\": \"<number>\",\n \"itemsPerPage\": 10,\n \"currentPage\": 1,\n \"totalPages\": \"<number>\",\n \"schedules\": [\n  {\n   \"id\": \"<string>\",\n   \"durationInHours\": \"<number>\",\n   \"startDate\": \"<string>\",\n   \"userId\": \"<string>\",\n   \"createdAt\": \"<string>\",\n   \"updatedAt\": \"<string>\"\n  },\n  {\n   \"id\": \"<string>\",\n   \"durationInHours\": \"<number>\",\n   \"startDate\": \"<string>\",\n   \"userId\": \"<string>\",\n   \"createdAt\": \"<string>\",\n   \"updatedAt\": \"<string>\"\n  }\n ]\n}"
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{adminAccessToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "{id}",
+							"item": [
+								{
+									"name": "Delete user",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "m"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{userId}}",
+													"description": "(Required) User id"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "User is deleted (status)",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"description": "Unique request identifier",
+														"key": "X-Request-Id",
+														"value": "<string>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"isSuccess\": \"<boolean>\",\n \"error\": {\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n }\n}"
+										}
+									]
+								},
+								{
+									"name": "Update user",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "m"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"password\": \"newPassword\",\n    \"email\": \"new@email.com\",\n    \"roles\": [\n        \"admin\",\n        \"staff\"\n    ],\n    \"status\": \"BLOCKED\",\n    \"departmentIds\": []\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/admin/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{userId}}",
+													"description": "(Required) User id"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "User entity",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [
+													{
+														"description": "Unique request identifier",
+														"key": "X-Request-Id",
+														"value": "<string>"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"password\": \"<string>\",\n    \"email\": \"<string>\",\n    \"roles\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"status\": \"<string>\",\n    \"departmentIds\": [\n        \"<string>\",\n        \"<string>\"\n    ]\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/admin/users/:id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"users",
+														":id"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"<string>\",\n \"email\": \"<string>\",\n \"roles\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"status\": \"<string>\",\n \"createdAt\": \"<string>\",\n \"updatedAt\": \"<string>\",\n \"blockedAt\": \"<string>\",\n \"lastLogonAt\": \"<string>\",\n \"totalSchedulesDurationInHoursByPeriod\": \"<number>\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Activate user",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "m"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/users/:id/activate",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"users",
+												":id",
+												"activate"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{userId}}",
+													"description": "(Required) User id"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "User entity",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [
+													{
+														"description": "Unique request identifier",
+														"key": "X-Request-Id",
+														"value": "<string>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/users/:id/activate",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"users",
+														":id",
+														"activate"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"<string>\",\n \"email\": \"<string>\",\n \"roles\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"status\": \"<string>\",\n \"createdAt\": \"<string>\",\n \"updatedAt\": \"<string>\",\n \"blockedAt\": \"<string>\",\n \"lastLogonAt\": \"<string>\",\n \"totalSchedulesDurationInHoursByPeriod\": \"<number>\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Block user",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "m"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/users/:id/block",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"users",
+												":id",
+												"block"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "{{userId}}",
+													"description": "(Required) User id"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "User entity",
+											"originalRequest": {
+												"method": "PATCH",
+												"header": [
+													{
+														"description": "Unique request identifier",
+														"key": "X-Request-Id",
+														"value": "<string>"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/admin/users/:id/block",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"admin",
+														"users",
+														":id",
+														"block"
+													],
+													"variable": [
+														{
+															"key": "id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n \"id\": \"<string>\",\n \"email\": \"<string>\",\n \"roles\": [\n  \"<string>\",\n  \"<string>\"\n ],\n \"status\": \"<string>\",\n \"createdAt\": \"<string>\",\n \"updatedAt\": \"<string>\",\n \"blockedAt\": \"<string>\",\n \"lastLogonAt\": \"<string>\",\n \"totalSchedulesDurationInHoursByPeriod\": \"<number>\"\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get users list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Unique request identifier",
+										"key": "X-Request-Id",
+										"value": "m"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/users?perPage=10&page=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"users"
+									],
+									"query": [
+										{
+											"key": "perPage",
+											"value": "10",
+											"description": "(Required) Items per page"
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"description": "(Required) Current page"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Users list",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "<string>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/users?perPage=10&page=1",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"users"
+											],
+											"query": [
+												{
+													"key": "perPage",
+													"value": "10"
+												},
+												{
+													"key": "page",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"totalItems\": \"<number>\",\n \"itemsPerPage\": 10,\n \"currentPage\": 1,\n \"totalPages\": \"<number>\",\n \"users\": [\n  {\n   \"id\": \"<string>\",\n   \"email\": \"<string>\",\n   \"roles\": [\n    \"<string>\",\n    \"<string>\"\n   ],\n   \"status\": \"<string>\",\n   \"createdAt\": \"<string>\",\n   \"updatedAt\": \"<string>\",\n   \"blockedAt\": \"<string>\",\n   \"lastLogonAt\": \"<string>\",\n   \"totalSchedulesDurationInHoursByPeriod\": \"<number>\"\n  },\n  {\n   \"id\": \"<string>\",\n   \"email\": \"<string>\",\n   \"roles\": [\n    \"<string>\",\n    \"<string>\"\n   ],\n   \"status\": \"<string>\",\n   \"createdAt\": \"<string>\",\n   \"updatedAt\": \"<string>\",\n   \"blockedAt\": \"<string>\",\n   \"lastLogonAt\": \"<string>\",\n   \"totalSchedulesDurationInHoursByPeriod\": \"<number>\"\n  }\n ]\n}"
+								}
+							]
+						},
+						{
+							"name": "Get users list with durations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Unique request identifier",
+										"key": "X-Request-Id",
+										"value": "m"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/admin/users/schedules-total-duration?perPage=10&page=1&from=2022-12-31&to=2023-12-31",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										"schedules-total-duration"
+									],
+									"query": [
+										{
+											"key": "perPage",
+											"value": "10",
+											"description": "(Required) Items per page"
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"description": "(Required) Current page"
+										},
+										{
+											"key": "from",
+											"value": "2022-12-31",
+											"description": "(Required) Query search by start date (from) (ISO string)"
+										},
+										{
+											"key": "to",
+											"value": "2023-12-31",
+											"description": "(Required) Query search by start date (to) (ISO string)"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Users list with durations",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "<string>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/admin/users/schedules-total-duration?perPage=10&page=1&from=<string>&to=<string>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"admin",
+												"users",
+												"schedules-total-duration"
+											],
+											"query": [
+												{
+													"key": "perPage",
+													"value": "10"
+												},
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "from",
+													"value": "<string>"
+												},
+												{
+													"key": "to",
+													"value": "<string>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"totalItems\": \"<number>\",\n \"itemsPerPage\": 10,\n \"currentPage\": 1,\n \"totalPages\": \"<number>\",\n \"users\": [\n  {\n   \"id\": \"<string>\",\n   \"email\": \"<string>\",\n   \"roles\": [\n    \"<string>\",\n    \"<string>\"\n   ],\n   \"status\": \"<string>\",\n   \"createdAt\": \"<string>\",\n   \"updatedAt\": \"<string>\",\n   \"blockedAt\": \"<string>\",\n   \"lastLogonAt\": \"<string>\",\n   \"totalSchedulesDurationInHoursByPeriod\": \"<number>\"\n  },\n  {\n   \"id\": \"<string>\",\n   \"email\": \"<string>\",\n   \"roles\": [\n    \"<string>\",\n    \"<string>\"\n   ],\n   \"status\": \"<string>\",\n   \"createdAt\": \"<string>\",\n   \"updatedAt\": \"<string>\",\n   \"blockedAt\": \"<string>\",\n   \"lastLogonAt\": \"<string>\",\n   \"totalSchedulesDurationInHoursByPeriod\": \"<number>\"\n  }\n ]\n}"
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "{{adminAccessToken}}",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "staff",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "Simple sign up",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Unique request identifier",
+										"key": "X-Request-Id",
+										"value": "m"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"user@email.com\",\n    \"password\": \"userPassword\",\n    \"departmentIds\": []\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/staff/auth/signup",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"auth",
+										"signup"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "User is created (status)",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\",\n    \"departmentIds\": [\n        \"<string>\",\n        \"<string>\"\n    ]\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/staff/auth/signup",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"staff",
+												"auth",
+												"signup"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"isSuccess\": \"<boolean>\",\n \"error\": {\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n }\n}"
+								}
+							]
+						},
+						{
+							"name": "Simple logon",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Unique request identifier",
+										"key": "X-Request-Id",
+										"value": "m"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"user@email.com\",\n    \"password\": \"userPassword\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/staff/auth/logon",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"auth",
+										"logon"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Token pair",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"<string>\",\n    \"password\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/staff/auth/logon",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"staff",
+												"auth",
+												"logon"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"accessToken\": \"<string>\",\n \"refreshToken\": \"<string>\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Refresh token",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Unique request identifier",
+										"key": "X-Request-Id",
+										"value": "m"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"refreshToken\": \"{{staffRefreshToken}}\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/staff/auth/refresh",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"auth",
+										"refresh"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Token pair",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"description": "Unique request identifier",
+												"key": "X-Request-Id",
+												"value": "<string>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"refreshToken\": \"<string>\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/staff/auth/refresh",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"staff",
+												"auth",
+												"refresh"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"accessToken\": \"<string>\",\n \"refreshToken\": \"<string>\"\n}"
+								}
+							]
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"const response = JSON.parse(responseBody)",
+									"response.accessToken && pm.environment.set(\"staffAccessToken\", response.accessToken);",
+									"response.refreshToken && pm.environment.set(\"staffRefreshToken\", response.refreshToken);",
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Get schedules list (with department restrictions)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{staffAccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"description": "Unique request identifier",
+								"key": "X-Request-Id",
+								"value": "m"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/staff/schedules?perPage=100&page=1&from=2022-12-31&to=2023-12-31",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"staff",
+								"schedules"
+							],
+							"query": [
+								{
+									"key": "perPage",
+									"value": "100",
+									"description": "(Required) Items per page"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"description": "(Required) Current page"
+								},
+								{
+									"key": "from",
+									"value": "2022-12-31",
+									"description": "(Required) Query search by start date (from) (ISO string)"
+								},
+								{
+									"key": "to",
+									"value": "2023-12-31",
+									"description": "(Required) Query search by start date (to) (ISO string)"
+								},
+								{
+									"key": "userId",
+									"value": "{{userId}}",
+									"description": "User id",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Schedules list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Unique request identifier",
+										"key": "X-Request-Id",
+										"value": "<string>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/staff/schedules?perPage=10&page=1&from=<string>&to=<string>&userId=<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"staff",
+										"schedules"
+									],
+									"query": [
+										{
+											"key": "perPage",
+											"value": "10"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "from",
+											"value": "<string>"
+										},
+										{
+											"key": "to",
+											"value": "<string>"
+										},
+										{
+											"key": "userId",
+											"value": "<string>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"totalItems\": \"<number>\",\n \"itemsPerPage\": 10,\n \"currentPage\": 1,\n \"totalPages\": \"<number>\",\n \"schedules\": [\n  {\n   \"id\": \"<string>\",\n   \"durationInHours\": \"<number>\",\n   \"startDate\": \"<string>\",\n   \"userId\": \"<string>\",\n   \"createdAt\": \"<string>\",\n   \"updatedAt\": \"<string>\"\n  },\n  {\n   \"id\": \"<string>\",\n   \"durationInHours\": \"<number>\",\n   \"startDate\": \"<string>\",\n   \"userId\": \"<string>\",\n   \"createdAt\": \"<string>\",\n   \"updatedAt\": \"<string>\"\n  }\n ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "public",
+			"item": [
+				{
+					"name": "Get JWT public key (base64, not JWK)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Unique request identifier",
+								"key": "X-Request-Id",
+								"value": "m"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/public/jwt-public-key",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"public",
+								"jwt-public-key"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "JWT public key (base64)",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Unique request identifier",
+										"key": "X-Request-Id",
+										"value": "<string>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/public/jwt-public-key",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"public",
+										"jwt-public-key"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "\"<string>\""
+						}
+					]
+				},
+				{
+					"name": "Get departments list",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Unique request identifier",
+								"key": "X-Request-Id",
+								"value": "m"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/public/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"public",
+								"departments"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get departments list",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Unique request identifier",
+										"key": "X-Request-Id",
+										"value": "<string>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/public/departments",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"public",
+										"departments"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"id\": \"<string>\",\n  \"name\": \"<string>\"\n },\n {\n  \"id\": \"<string>\",\n  \"name\": \"<string>\"\n }\n]"
+						}
+					]
+				},
+				{
+					"name": "Current instance info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Unique request identifier",
+								"key": "X-Request-Id",
+								"value": "m"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/public/about",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"public",
+								"about"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Info about current instance",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Unique request identifier",
+										"key": "X-Request-Id",
+										"value": "<string>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/public/about",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"public",
+										"about"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"version\": \"<string>\",\n \"currentTime\": \"<string>\",\n \"startedAt\": \"<string>\",\n \"stand\": \"<string>\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000"
+		},
+		{
+			"key": "userId",
+			"value": ""
+		},
+		{
+			"key": "scheduleId",
+			"value": ""
+		}
+	]
+}

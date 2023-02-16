@@ -1,0 +1,1384 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/admin/auth/signup": {
+      "post": {
+        "operationId": "AdminAuthController_simpleSignUp",
+        "summary": "Simple sign up",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUpForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User is created (status)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin/auth"
+        ]
+      }
+    },
+    "/admin/auth/logon": {
+      "post": {
+        "operationId": "AdminAuthController_simpleLogon",
+        "summary": "Simple logon",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogonForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Token pair",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenPairResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin/auth"
+        ]
+      }
+    },
+    "/admin/auth/refresh": {
+      "post": {
+        "operationId": "AdminAuthController_refreshToken",
+        "summary": "Refresh token",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Token pair",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenPairResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin/auth"
+        ]
+      }
+    },
+    "/admin/schedules": {
+      "post": {
+        "operationId": "AdminScheduleController_create",
+        "summary": "Create schedule",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateScheduleForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Schedule entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin/schedule"
+        ]
+      },
+      "get": {
+        "operationId": "AdminScheduleController_getList",
+        "summary": "Get schedules list (without department restrictions)",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "perPage",
+            "required": true,
+            "in": "query",
+            "description": "Items per page",
+            "schema": {
+              "minimum": 10,
+              "maximum": 200,
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "description": "Current page",
+            "schema": {
+              "minimum": 1,
+              "maximum": 65536,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "from",
+            "required": true,
+            "in": "query",
+            "description": "Query search by start date (from) (ISO string)",
+            "schema": {
+              "minLength": 10,
+              "maxLength": 10,
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "required": true,
+            "in": "query",
+            "description": "Query search by start date (to) (ISO string)",
+            "schema": {
+              "minLength": 10,
+              "maxLength": 10,
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "required": true,
+            "in": "query",
+            "description": "User id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Schedules list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SchedulesListResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin/schedule"
+        ]
+      }
+    },
+    "/admin/schedules/{id}": {
+      "delete": {
+        "operationId": "AdminScheduleController_delete",
+        "summary": "Delete schedule",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Schedule id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Schedule is deleted (status)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin/schedule"
+        ]
+      },
+      "patch": {
+        "operationId": "AdminScheduleController_update",
+        "summary": "Update schedule",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Schedule id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateScheduleForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Schedule entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin/schedule"
+        ]
+      }
+    },
+    "/admin/users/schedules-total-duration": {
+      "get": {
+        "operationId": "AdminUserController_getListWithDurations",
+        "summary": "Get users list with durations",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "perPage",
+            "required": true,
+            "in": "query",
+            "description": "Items per page",
+            "schema": {
+              "minimum": 10,
+              "maximum": 200,
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "description": "Current page",
+            "schema": {
+              "minimum": 1,
+              "maximum": 65536,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "from",
+            "required": true,
+            "in": "query",
+            "description": "Query search by start date (from) (ISO string)",
+            "schema": {
+              "minLength": 10,
+              "maxLength": 10,
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "required": true,
+            "in": "query",
+            "description": "Query search by start date (to) (ISO string)",
+            "schema": {
+              "minLength": 10,
+              "maxLength": 10,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Users list with durations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsersListResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin/users"
+        ]
+      }
+    },
+    "/admin/users": {
+      "get": {
+        "operationId": "AdminUserController_getList",
+        "summary": "Get users list",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "perPage",
+            "required": true,
+            "in": "query",
+            "description": "Items per page",
+            "schema": {
+              "minimum": 10,
+              "maximum": 200,
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "description": "Current page",
+            "schema": {
+              "minimum": 1,
+              "maximum": 65536,
+              "default": 1,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Users list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsersListResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin/users"
+        ]
+      }
+    },
+    "/admin/users/{id}/activate": {
+      "patch": {
+        "operationId": "AdminUserController_activate",
+        "summary": "Activate user",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "User id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin/users"
+        ]
+      }
+    },
+    "/admin/users/{id}/block": {
+      "patch": {
+        "operationId": "AdminUserController_block",
+        "summary": "Block user",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "User id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin/users"
+        ]
+      }
+    },
+    "/admin/users/{id}": {
+      "delete": {
+        "operationId": "AdminUserController_delete",
+        "summary": "Delete user",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "User id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted (status)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin/users"
+        ]
+      },
+      "patch": {
+        "operationId": "AdminUserController_update",
+        "summary": "Update user",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "User id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "admin/users"
+        ]
+      }
+    },
+    "/staff/schedules": {
+      "get": {
+        "operationId": "StaffScheduleController_getList",
+        "summary": "Get schedules list (with department restrictions)",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "perPage",
+            "required": true,
+            "in": "query",
+            "description": "Items per page",
+            "schema": {
+              "minimum": 10,
+              "maximum": 200,
+              "default": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "required": true,
+            "in": "query",
+            "description": "Current page",
+            "schema": {
+              "minimum": 1,
+              "maximum": 65536,
+              "default": 1,
+              "type": "number"
+            }
+          },
+          {
+            "name": "from",
+            "required": true,
+            "in": "query",
+            "description": "Query search by start date (from) (ISO string)",
+            "schema": {
+              "minLength": 10,
+              "maxLength": 10,
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "required": true,
+            "in": "query",
+            "description": "Query search by start date (to) (ISO string)",
+            "schema": {
+              "minLength": 10,
+              "maxLength": 10,
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "required": false,
+            "in": "query",
+            "description": "User id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Schedules list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SchedulesListResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "staff/schedule"
+        ]
+      }
+    },
+    "/staff/auth/signup": {
+      "post": {
+        "operationId": "StaffAuthController_simpleSignUp",
+        "summary": "Simple sign up",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignUpForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User is created (status)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenericResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "staff/auth"
+        ]
+      }
+    },
+    "/staff/auth/logon": {
+      "post": {
+        "operationId": "StaffAuthController_simpleLogon",
+        "summary": "Simple logon",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LogonForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Token pair",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenPairResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "staff/auth"
+        ]
+      }
+    },
+    "/staff/auth/refresh": {
+      "post": {
+        "operationId": "StaffAuthController_refreshToken",
+        "summary": "Refresh token",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefreshTokenForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Token pair",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenPairResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "staff/auth"
+        ]
+      }
+    },
+    "/public/jwt-public-key": {
+      "get": {
+        "operationId": "PublicController_getPublicKey",
+        "summary": "Get JWT public key (base64, not JWK)",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JWT public key (base64)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "public"
+        ]
+      }
+    },
+    "/public/departments": {
+      "get": {
+        "operationId": "PublicController_getDepartments",
+        "summary": "Get departments list",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get departments list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DepartmentResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "public"
+        ]
+      }
+    },
+    "/public/about": {
+      "get": {
+        "operationId": "PublicController_about",
+        "summary": "Current instance info",
+        "parameters": [
+          {
+            "name": "X-Request-Id",
+            "in": "header",
+            "description": "Unique request identifier",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Info about current instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AboutResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "public"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Scheduler",
+    "description": "Scheduler test task API description",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "SignUpForm": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password",
+            "minLength": 8,
+            "maxLength": 255
+          },
+          "departmentIds": {
+            "description": "User department id",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "code": {
+            "type": "string",
+            "description": "Error code"
+          }
+        },
+        "required": [
+          "code"
+        ]
+      },
+      "GenericResponse": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "description": "Request status"
+          },
+          "error": {
+            "description": "Request error",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErrorResponse"
+              }
+            ]
+          }
+        },
+        "required": [
+          "isSuccess"
+        ]
+      },
+      "LogonForm": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User email"
+          },
+          "password": {
+            "type": "string",
+            "description": "User password",
+            "minLength": 8,
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "TokenPairResponse": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "description": "Access token"
+          },
+          "refreshToken": {
+            "type": "string",
+            "description": "Refresh token"
+          }
+        },
+        "required": [
+          "accessToken"
+        ]
+      },
+      "RefreshTokenForm": {
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "description": "Refresh token"
+          }
+        },
+        "required": [
+          "refreshToken"
+        ]
+      },
+      "CreateScheduleForm": {
+        "type": "object",
+        "properties": {
+          "durationInHours": {
+            "type": "number",
+            "description": "Schedule duration in hours",
+            "minimum": 0,
+            "maximum": 24
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Schedule start date (date part of ISO string)",
+            "maxLength": 10,
+            "minLength": 10
+          },
+          "userId": {
+            "type": "string",
+            "description": "User id"
+          }
+        },
+        "required": [
+          "durationInHours",
+          "startDate",
+          "userId"
+        ]
+      },
+      "ScheduleResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Schedule id"
+          },
+          "durationInHours": {
+            "type": "number",
+            "description": "Schedule duration in hours",
+            "minimum": 0,
+            "maximum": 24
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Schedule start date (date part of ISO string)",
+            "maxLength": 10,
+            "minLength": 10
+          },
+          "userId": {
+            "type": "string",
+            "description": "User id"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Schedule created at (ISO string)"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Schedule last updated at (ISO string)"
+          }
+        },
+        "required": [
+          "id",
+          "durationInHours",
+          "startDate",
+          "userId"
+        ]
+      },
+      "UpdateScheduleForm": {
+        "type": "object",
+        "properties": {
+          "durationInHours": {
+            "type": "number",
+            "description": "Schedule duration in hours",
+            "minimum": 0,
+            "maximum": 24
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Schedule start date (date part of ISO string)",
+            "maxLength": 10,
+            "minLength": 10
+          },
+          "userId": {
+            "type": "string",
+            "description": "User id"
+          }
+        }
+      },
+      "SchedulesListResponse": {
+        "type": "object",
+        "properties": {
+          "totalItems": {
+            "type": "number",
+            "description": "Total items in list"
+          },
+          "itemsPerPage": {
+            "type": "number",
+            "description": "Items per page",
+            "default": 10,
+            "minimum": 10,
+            "maximum": 200
+          },
+          "currentPage": {
+            "type": "number",
+            "description": "Current page",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 65536
+          },
+          "totalPages": {
+            "type": "number",
+            "description": "Total pages"
+          },
+          "schedules": {
+            "description": "Schedules list",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScheduleResponse"
+            }
+          }
+        },
+        "required": [
+          "totalItems",
+          "itemsPerPage",
+          "currentPage",
+          "totalPages",
+          "schedules"
+        ]
+      },
+      "RolesEnum": {
+        "type": "string",
+        "enum": [
+          "staff",
+          "admin"
+        ]
+      },
+      "UserStatusEnum": {
+        "type": "string",
+        "enum": [
+          "ACTIVE",
+          "BLOCKED",
+          "NOT_ACTIVATED"
+        ]
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "User id"
+          },
+          "email": {
+            "type": "string",
+            "description": "User email"
+          },
+          "roles": {
+            "type": "array",
+            "description": "User roles",
+            "items": {
+              "$ref": "#/components/schemas/RolesEnum"
+            }
+          },
+          "status": {
+            "description": "User status",
+            "$ref": "#/components/schemas/UserStatusEnum"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "User created at (ISO string)"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "User last updated at (ISO string)"
+          },
+          "blockedAt": {
+            "type": "string",
+            "description": "User last blocked at (ISO string)"
+          },
+          "lastLogonAt": {
+            "type": "string",
+            "description": "User last logon at (ISO string)"
+          },
+          "totalSchedulesDurationInHoursByPeriod": {
+            "type": "number",
+            "description": "Total schedules duration in hours by selected period"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "roles",
+          "status"
+        ]
+      },
+      "UsersListResponse": {
+        "type": "object",
+        "properties": {
+          "totalItems": {
+            "type": "number",
+            "description": "Total items in list"
+          },
+          "itemsPerPage": {
+            "type": "number",
+            "description": "Items per page",
+            "default": 10,
+            "minimum": 10,
+            "maximum": 200
+          },
+          "currentPage": {
+            "type": "number",
+            "description": "Current page",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 65536
+          },
+          "totalPages": {
+            "type": "number",
+            "description": "Total pages"
+          },
+          "users": {
+            "description": "Users list",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserResponse"
+            }
+          }
+        },
+        "required": [
+          "totalItems",
+          "itemsPerPage",
+          "currentPage",
+          "totalPages",
+          "users"
+        ]
+      },
+      "UpdateUserForm": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "description": "User password",
+            "minLength": 8,
+            "maxLength": 255
+          },
+          "email": {
+            "type": "string",
+            "description": "User email"
+          },
+          "roles": {
+            "type": "array",
+            "description": "User roles",
+            "items": {
+              "$ref": "#/components/schemas/RolesEnum"
+            }
+          },
+          "status": {
+            "description": "User status",
+            "$ref": "#/components/schemas/UserStatusEnum"
+          },
+          "departmentIds": {
+            "description": "User department id",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "DepartmentResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Department id"
+          },
+          "name": {
+            "type": "string",
+            "description": "Department name"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "AboutResponse": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string",
+            "description": "Release version"
+          },
+          "currentTime": {
+            "type": "string",
+            "description": "Current server time"
+          },
+          "startedAt": {
+            "type": "string",
+            "description": "Last started at"
+          },
+          "stand": {
+            "type": "string",
+            "description": "Stand name"
+          }
+        },
+        "required": [
+          "version",
+          "currentTime",
+          "startedAt",
+          "stand"
+        ]
+      }
+    }
+  }
+}
