@@ -1,0 +1,20 @@
+{
+    "jwt": {
+      "accessTokenTTLSeconds": 300,
+      "refreshTokenTTLSeconds": 14400,
+      "clockToleranceSeconds": 10,
+      "algorithm": "ES512",
+      "privateKeyFilePath": "./jwtKeys/test.jwtES512.key",
+      "publicKeyFilePath": "./jwtKeys/test.jwtES512.key.pub"
+    },
+    "pbkdf2": {
+      "saltLengthBytes": 64,
+      "keyLengthBytes": 64,
+      "iterations": 358471,
+      "digest": "sha3-512"
+    },
+    "session": {
+      "idleTimeSeconds": 14400,
+      "expirationTimeSeconds": 172800
+    }
+  }
