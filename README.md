@@ -41,15 +41,15 @@ Additional information
 
 - For logon system uses pair email/password.
 - Administrator has to confirm the newly created account before the user can log in.
-- System have a mechanism to create the first administrator (default user, can be set in environment)
+- System has a mechanism to create the first administrator (default user, can be set in environment)
 - Staff and admins have different endpoints for logon, registration, token refresh.
-- System have a mechanism of staff users groups (currently there is only stub groups) and the user can see only his colleagues, not all users
-- Only user with staff role can have his own schedule.
-- An administrator can't delete himself (this excludes a risk of losing the last administrator)
+- System has a mechanism of staff users groups (currently there is only stub groups) and the user can see only their colleagues, not all users
+- Only user with staff role can have their own schedule.
+- An administrator can't delete themselves (this excludes a risk of losing the last administrator)
 - Session is blocked immediately after the user is deleted / blocked
-- A deleted user can create an account again with the same email (with all of his schedules)
-- System have partial audit of user related actions (create, update, delete) an audit of users
-- System have logging system with partial performance info
+- A deleted user can create an account again with the same email (with all of their schedules)
+- System has partial audit of user related actions (create, update, delete) an audit of users
+- System has logging system with partial performance info
 
 TODO:
 
